@@ -333,7 +333,7 @@
   # => :a
 
   (path (down h-zip))
-  # [[:a :b [:x :y]]
+  # => [[:a :b [:x :y]]]
 
   )
 
@@ -613,8 +613,10 @@
   (root (insert-left (down r-zip) :z))
   # => [:z :a :b [:x :y]]
 
-  (insert-left r-zip :e)
-  # !
+  (try
+    (insert-left r-zip :e)
+    ([e] e))
+  # => "Insert at top"
 
   )
 
@@ -638,8 +640,10 @@
   (root (insert-right (down s-zip) :z))
   # => [:a :z :b [:x :y]]
 
-  (insert-left s-zip :e)
-  # !
+  (try
+    (insert-left s-zip :e)
+    ([e] e))
+  # => "Insert at top"
 
   )
 
@@ -801,7 +805,9 @@
   (root (remove (right (right (down y-zip)))))
   # => [:a :b]
 
-  (remove y-zip)
-  # !
+  (try
+    (remove y-zip)
+    ([e] e))
+  # => "Remove at top"
 
   )
